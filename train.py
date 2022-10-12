@@ -1,6 +1,6 @@
 import pandas as pd 
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+# from sklearn.linear_model import LogisticRegression
 from sklearn import preprocessing
 from sklearn.model_selection import cross_val_predict
 from sklearn.metrics import confusion_matrix
@@ -10,6 +10,7 @@ import json
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.impute import SimpleImputer
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
 df = pd.read_csv("data_processed.csv")
 
@@ -28,7 +29,8 @@ X = imp.transform(X)
 
 
 # Linear model
-clf = LogisticRegression()
+# clf = LogisticRegression()
+clf = QuadraticDiscriminantAnalysis()
 yhat = cross_val_predict(clf, X, y, cv=5)
 
 acc = np.mean(yhat==y)
